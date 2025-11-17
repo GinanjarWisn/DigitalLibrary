@@ -1,0 +1,23 @@
+# Prioritaskan index.html sebelum index.php
+DirectoryIndex index.html index.php
+
+# Matikan listing direktori (keamanan)
+Options -Indexes
+
+# Lindungi file konfigurasi dan sensitive dari akses publik
+<FilesMatch "^(?:\.ht|config\.php|db\.php)$">
+    Require all denied
+</FilesMatch>
+
+# Batasi akses file check_server.php dan test_db.php hanya dari localhost (opsional)
+<FilesMatch "^(check_server\.php|test_db\.php)$">
+    Require local
+</FilesMatch>
+
+# Redirect www ke non-www (opsional jika Anda ingin)
+# RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+# RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Custom Error Page (opsional jika Anda punya halaman 404)
+# ErrorDocument 404 /404.html
